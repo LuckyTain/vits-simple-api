@@ -11,8 +11,13 @@ from functools import wraps
 from utils.data_utils import save_audio, clean_folder, check_is_none
 from utils.load_model import load_model
 from io import BytesIO
+from pyngrok import ngrok
+
 
 app = Flask(__name__)
+# Open a ngrok tunnel to the HTTP server
+public_url = ngrok.connect(23456).public_url
+print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}/\"".format(public_url, 23456))
 app.config.from_pyfile("config.py")
 
 scheduler = APScheduler()
