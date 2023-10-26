@@ -32,6 +32,8 @@ RUN pip install gunicorn --no-cache-dir && \
     rm -rf /root/.cache/pip/*
 
 RUN mkdir -p Model/acg && \
+    mkdir -p bert_vits2/bert/chinese-roberta-wwm-ext-large && \
+    mkdir -p bert_vits2/bert/bert-base-japanese-v3 && \
     wget https://huggingface.co/spaces/TLME/Bert-VITS-Umamusume-Genshin-HonkaiSR/resolve/main/logs/UGH/G_100000.pth -O Model/acg/G_100000.pth && \
     wget https://huggingface.co/spaces/TLME/Bert-VITS-Umamusume-Genshin-HonkaiSR/resolve/main/configs/config.json -O Model/acg/config.json && \
     wget https://huggingface.co/hfl/chinese-roberta-wwm-ext-large/resolve/main/pytorch_model.bin -O bert_vits2/bert/chinese-roberta-wwm-ext-large/pytorch_model.bin && \
