@@ -67,7 +67,7 @@ MODEL_LIST = [
     # [ABS_PATH + "/Model/w2v2-vits/1026_epochs.pth", ABS_PATH + "/Model/w2v2-vits/config.json"],
     # Bert-VITS2
     # [ABS_PATH + "/Model/bert_vits2/G_9000.pth", ABS_PATH + "/Model/bert_vits2/config.json"],
-    [ABS_PATH + "/Model/ellie/ellie.pth", ABS_PATH + "/Model/ellie/ellie.json"],
+    [ABS_PATH + "/Model/acg/G_100000.pth", ABS_PATH + "/Model/acg/config.json"],
 ]
 
 # hubert-vits: hubert soft model
@@ -82,8 +82,7 @@ DIMENSIONAL_EMOTION_NPY = ABS_PATH + "/Model/npy"
 # w2v2-vits: Need to have both `model.onnx` and `model.yaml` files in the same path.
 # DIMENSIONAL_EMOTION_MODEL = ABS_PATH + "/Model/model.yaml"
 
-# DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-DEVICE = torch.device("cpu")
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 """
 Default parameter

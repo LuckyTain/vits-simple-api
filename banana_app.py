@@ -1,3 +1,5 @@
+import base64
+
 from potassium import Potassium, Request, Response
 
 from transformers import pipeline
@@ -30,8 +32,9 @@ def init():
 @app.handler("/")
 def handler(context: dict, request: Request) -> Response:
     text = request.json.get("text")
+    speaker_id = request.json.get("id")
     task = {"text": text,
-            "id": 0,
+            "id": int(speaker_id),
             "format": 'wav',
             "length": 1.0,
             "noise": 0.6,
@@ -42,11 +45,15 @@ def handler(context: dict, request: Request) -> Response:
             "speaker_lang": 'zh'}
 
     audio = vits_app.tts.bert_vits2_infer(task)
-    with open("output.wav", "wb") as f:
-        f.write(audio.getbuffer())
+    # with open("output.wav", "wb") as f:
+    #     f.write(audio.getbuffer())
+    file_byte = audio.getvalue()
+    file_base64 = base64.b64encode(file_byte).decode("utf-8")
+    cuda_status = torch.cuda.is_available()
+    print("cuda_status:", cuda_status)
 
     return Response(
-        json={"outputs": "success"},
+        json={"outputs": "success", "file": file_base64},
         status=200
     )
 
