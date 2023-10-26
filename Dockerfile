@@ -40,5 +40,5 @@ COPY . /app
 EXPOSE 23456
 EXPOSE 8000
 
-CMD python3 -u app.py
+CMD python3 -u banana_app.py
 #CMD ["gunicorn", "-c", "gunicorn_config.py", "app:app"]

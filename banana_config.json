@@ -2,7 +2,8 @@
     "name": "",
     "category": "",
     "example_input": {
-        "prompt": "Hello I am a [MASK] model."
+        "text": "",
+        "id": "105"
     },
     "example_output": {
         "outputs":[
