@@ -1,5 +1,6 @@
 import base64
 import time
+from datetime import datetime
 
 from potassium import Potassium, Request, Response
 
@@ -8,7 +9,7 @@ import torch
 import app as vits_app
 
 app = Potassium("my_app")
-
+print('start: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 # @app.init runs at startup, and loads models into the app's context
 @app.init
