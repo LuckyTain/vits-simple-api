@@ -49,8 +49,8 @@ def handler(context: dict, request: Request) -> Response:
     #     f.write(audio.getbuffer())
     file_byte = audio.getvalue()
     file_base64 = base64.b64encode(file_byte).decode("utf-8")
-    cuda_status = torch.cuda.is_available()
-    print("cuda_status:", cuda_status)
+    # cuda_status = torch.cuda.is_available()
+    # print("cuda_status:", cuda_status)
 
     return Response(
         json={"outputs": "success", "file": file_base64},
