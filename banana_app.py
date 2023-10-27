@@ -9,7 +9,6 @@ import torch
 import app as vits_app
 
 app = Potassium("my_app")
-print('start: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 # @app.init runs at startup, and loads models into the app's context
 @app.init
@@ -37,6 +36,7 @@ def init():
 @app.handler("/")
 def handler(context: dict, request: Request) -> Response:
     time1 = time.time()
+    model = context.get("model")
     text = request.json.get("text")
     speaker_id = request.json.get("id")
     task = {"text": text,
@@ -50,7 +50,7 @@ def handler(context: dict, request: Request) -> Response:
             "lang": 'auto',
             "speaker_lang": 'zh'}
 
-    audio = vits_app.tts.bert_vits2_infer(task)
+    audio = model.tts.bert_vits2_infer(task)
     # with open("output.wav", "wb") as f:
     #     f.write(audio.getbuffer())
     file_byte = audio.getvalue()
@@ -67,4 +67,5 @@ def handler(context: dict, request: Request) -> Response:
 
 
 if __name__ == "__main__":
+    print('start: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     app.serve()
